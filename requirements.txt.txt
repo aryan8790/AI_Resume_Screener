@@ -3,3 +3,4 @@ PyPDF2
 pandas
 scikit-learn
 spacy
+en-core-web-sm

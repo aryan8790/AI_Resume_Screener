@@ -1,9 +1,10 @@
 import streamlit as st
 import PyPDF2
 import pandas as pd
+import spacy
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-
+nlp = spacy.load("en_core_web_sm")
 def extract_text_from_pdf(file):
     text = ""
     pdf_reader = PyPDF2.PdfReader(file)
