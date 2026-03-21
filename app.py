@@ -1,19 +1,22 @@
 import streamlit as st
-import PyPDF2
+import pdfplumber
 import pandas as pd
 import spacy
 import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+# Download spaCy model if not present
 if not os.path.exists("en_core_web_sm"):
     os.system("python -m spacy download en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")
+
 def extract_text_from_pdf(file):
     text = ""
-    pdf_reader = PyPDF2.PdfReader(file)
-    for page in pdf_reader.pages:
-        text += page.extract_text()
+    with pdfplumber.open(file) as pdf:
+        for page in pdf.pages:
+            text += page.extract_text()
     return text
 
 skills_list = pd.read_csv("skills.csv", header=None)[0].tolist()
@@ -37,13 +40,13 @@ if uploaded_files and job_description:
     for file in uploaded_files:
         resume_text = extract_text_from_pdf(file)
         skills = extract_skills(resume_text)
-        
+
         text = [resume_text, job_description]
         cv = CountVectorizer()
         count_matrix = cv.fit_transform(text)
         match = cosine_similarity(count_matrix)[0][1]
         match_percentage = round(match * 100, 2)
-        
+
         results.append((file.name, match_percentage, ", ".join(skills)))
 
     results.sort(key=lambda x: x[1], reverse=True)
