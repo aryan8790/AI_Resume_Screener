@@ -19,7 +19,13 @@ def extract_text_from_pdf(file):
             text += page.extract_text()
     return text
 
-skills_list = pd.read_csv("skills.csv", header=None)[0].tolist()
+skills_list = [
+    "Python", "SQL", "Java", "JavaScript", "React", "Node.js",
+    "Machine Learning", "Deep Learning", "NLP", "Data Analysis",
+    "Excel", "Power BI", "Tableau", "Communication", "Leadership",
+    "Project Management", "Agile", "Scrum", "AWS", "Docker",
+    "Kubernetes", "Git", "REST API", "MongoDB", "PostgreSQL"
+]
 
 def extract_skills(text):
     found_skills = []
