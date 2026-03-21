@@ -7,8 +7,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Download spaCy model if not present
-if not os.path.exists("en_core_web_sm"):
-    os.system("python -m spacy download en_core_web_sm")
+#if not os.path.exists("en_core_web_sm"):
+ #   os.system("python -m spacy download en_core_web_sm")
 
 nlp = spacy.load("en_core_web_sm")
 
