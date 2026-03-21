@@ -2,8 +2,12 @@ import streamlit as st
 import PyPDF2
 import pandas as pd
 import spacy
+import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+if not os.path.exists("en_core_web_sm"):
+    os.system("python -m spacy download en_core_web_sm")
+
 nlp = spacy.load("en_core_web_sm")
 def extract_text_from_pdf(file):
     text = ""
