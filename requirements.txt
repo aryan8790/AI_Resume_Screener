@@ -1,6 +1,5 @@
-streamlit==1.32.0
-pdfplumber==0.10.3
-pandas==2.2.1
-scikit-learn==1.4.1
-spacy==3.7.4
-httpsgithub.comexplosionspacy-modelsreleasesdownloaden_core_web_sm-3.7.1en_core_web_sm-3.7.1-py3-none-any.whl
+streamlit
+pdfplumber
+pandas
+scikit-learn
+spacy==3.7.2
